@@ -88,16 +88,16 @@ $(document).ready(function () {
 
   });
 
-    $('#share-nav .arrow-right').on('click', function () {
+  $('#share-nav .arrow-right').on('click', function () {
     $('.share-slider').slick('slickNext');
   });
 
-    $('#share-nav .arrow-left').on('click', function () {
+  $('#share-nav .arrow-left').on('click', function () {
     $('.share-slider').slick('slickPrev');
   });
 
-  
-    $('.section-slider').slick({
+
+  $('.section-slider').slick({
     dots: false,
     arrows: false,
     infinite: true,
@@ -117,9 +117,9 @@ $(document).ready(function () {
     // instead of a settings object
   ]
   });
-  
-  
-    $('.reviews-slider').slick({
+
+
+  $('.reviews-slider').slick({
     dots: false,
     arrows: false,
     infinite: true,
@@ -131,6 +131,13 @@ $(document).ready(function () {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
+          slidesToScroll: 1
+        }
+    }, 
+      {
+        breakpoint: 1023,
+        settings: {
+          slidesToShow: 2,
           slidesToScroll: 1
         }
     }
@@ -149,13 +156,15 @@ $(document).ready(function () {
 
   });
 
-    $('#reviews-nav .arrow-right').on('click', function () {
+  $('#reviews-nav .arrow-right').on('click', function () {
     $('.reviews-slider').slick('slickNext');
   });
 
-    $('#reviews-nav .arrow-left').on('click', function () {
+  $('#reviews-nav .arrow-left').on('click', function () {
     $('.reviews-slider').slick('slickPrev');
   });
+
+
 
 
 
@@ -167,15 +176,15 @@ $(document).ready(function () {
 
   });
 
-    $('#slider_1-nav .arrow-right').on('click', function () {
+  $('#slider_1-nav .arrow-right').on('click', function () {
     $('#section-slider_1').slick('slickNext');
   });
 
-    $('#slider_1-nav .arrow-left').on('click', function () {
+  $('#slider_1-nav .arrow-left').on('click', function () {
     $('#section-slider_1').slick('slickPrev');
   });
 
-  
+
 
 
 
@@ -187,29 +196,61 @@ $(document).ready(function () {
 
   });
 
-    $('#slider_2-nav .arrow-right').on('click', function () {
+  $('#slider_2-nav .arrow-right').on('click', function () {
     $('#section-slider_2').slick('slickNext');
   });
 
-    $('#slider_2-nav .arrow-left').on('click', function () {
+  $('#slider_2-nav .arrow-left').on('click', function () {
     $('#section-slider_2').slick('slickPrev');
   });
 
-  
-$('.faq-title').click(function(){
-  $(this).toggleClass('active');
-  $(this).parent().find('.faq-content').slideToggle(300);
-})
-  
-$('.title-toggle').click(function(){
-  $(this).toggleClass('active');
-  $(this).parent().find('.section-container').slideToggle(300);
-  $('.section-slider').slick('refresh');
-})
-  
-   $('.menu ul>li').click(function(){
-//    $('.menu ul>li>ul').removeClass('active');
-     $(this).toggleClass('active');
-         $(this).find('ul').toggleClass('active');
-   })
+  if ($(window).width() < 1024) {
+    $('.advantage-slider').slick({
+      dots: false,
+      arrows: false,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    });
+    $('.advantage-slider ').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+      var elm = nextSlide + 1;
+      if (elm < 10) elm = '0' + elm;
+      $('#advantage-nav .curent').text(elm);
+      $('#advantage-nav .all').text('0' + slick.slideCount);
+
+    });
+
+    $('#advantage-nav .arrow-right').on('click', function () {
+      $('.advantage-slider').slick('slickNext');
+    });
+
+    $('#advantage-nav .arrow-left').on('click', function () {
+      $('.advantage-slider').slick('slickPrev');
+    });
+
+  }
+
+
+
+
+
+
+
+  $('.faq-title').click(function () {
+    $(this).toggleClass('active');
+    $(this).parent().find('.faq-content').slideToggle(300);
+  })
+
+  $('.title-toggle').click(function () {
+    $(this).toggleClass('active');
+    $(this).parent().find('.section-container').slideToggle(300);
+    $('.section-slider').slick('refresh');
+  })
+
+  $('.menu ul>li').click(function () {
+    //    $('.menu ul>li>ul').removeClass('active');
+    $(this).toggleClass('active');
+    $(this).find('ul').toggleClass('active');
+  })
 });
